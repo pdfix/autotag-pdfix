@@ -64,15 +64,18 @@ class Autotag:
 
         # Input
         command.append("-i")
-        command.append(self.input_path_str)
+        input_path: Path = Path(self.input_path_str).resolve()
+        command.append(input_path.as_posix())
 
         # Template
         command.append("-c")
-        command.append(self.template_path_str)
+        template_path: Path = Path(self.template_path_str).resolve()
+        command.append(template_path.as_posix())
 
         # Output
         command.append("-o")
-        command.append(self.output_path_str)
+        output_path: Path = Path(self.output_path_str).resolve()
+        command.append(output_path.as_posix())
 
         logger.info(f"Running:\n{' '.join(command)}")
 

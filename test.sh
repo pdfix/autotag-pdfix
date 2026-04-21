@@ -17,12 +17,6 @@ success() { echo -e "${GREEN}$1${NC}"; }
 # Function to print error messages
 error() { echo -e "${RED}ERROR: $1${NC}"; }
 
-# Check if the required arguments are provided
-if [ "$#" -ne 3 ]; then
-    echo "Usage: $0 <AWS_ID> <AWS_SECRET> <AWS_REGION>"
-    exit 1
-fi
-
 # init
 pushd "$(dirname $0)" > /dev/null
 

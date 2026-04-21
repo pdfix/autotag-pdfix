@@ -47,8 +47,12 @@ fi
 
 if [ "$ARCHITECTURE" != "linux_aarch64" ] && [ "$ARCHITECTURE" != "linux_x86_64" ] && [ "$ARCHITECTURE" != "macos_arm64" ]; then
     echo "❌ Invalid architecture: '$ARCHITECTURE'" >&2
-    exit 3
+    exit 2
 fi
+
+# Change to directory of this script
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR" || exit 3
 
 # Run python to download SDKs
 python3 -m venv venv-sdk;

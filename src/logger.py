@@ -47,8 +47,8 @@ def get_logger(name: str = "app_logger") -> logging.Logger:
         # Console handler
         console_handler: logging.StreamHandler = logging.StreamHandler()
         # To console only prints INFO and above
-        # console_handler.setLevel(logging.INFO)
-        console_handler.setLevel(logging.DEBUG)
+        console_handler.setLevel(logging.INFO)
+        # console_handler.setLevel(logging.DEBUG)
         console_handler.setFormatter(ColorFormatter("[%(levelname)s] %(message)s"))
         logger.addHandler(console_handler)
 

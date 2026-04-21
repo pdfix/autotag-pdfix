@@ -1,0 +1,5 @@
+CONFIG_FILE: str = "config.json"
+DOCKER_NAMESPACE: str = "pdfix"
+DOCKER_REPOSITORY: str = "autotag-pdfix"
+DOCKER_IMAGE: str = f"{DOCKER_NAMESPACE}/{DOCKER_REPOSITORY}"
+LATEST_SDK_VERSION: str = "v8.7.10"

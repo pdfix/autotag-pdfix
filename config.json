@@ -1,0 +1,48 @@
+{
+    "name": "Autotag PDFix",
+    "version": "v0.0.0",
+    "actions": [
+        {
+            "title": "AutoTag (PDFix)",
+            "name": "pdfix_autotag_pdfix",
+            "desc": "Automatically tags PDF using correct version of PDFix SDK [Local]",
+            "version": "v0.0.0",
+            "icon": "autotag",
+            "category": "Accessibility",
+            "local": true,
+            "program": "docker run -v \"${working_directory}:/data\" -w /data --rm pdfix/autotag-pdfix:latest tag --name \"${license_name}\" --key \"${license_key}\" -i \"/data/${input_pdf}\" -o \"/data/${output_pdf}\" -t \"/data/${template_json}\"",
+            "args": [
+                {
+                    "name": "input_pdf",
+                    "desc": "Input PDF file",
+                    "flags": 2,
+                    "type": "file_path",
+                    "ext": "pdf",
+                    "value": ""
+                },
+                {
+                    "name": "output_pdf",
+                    "desc": "Output PDF file",
+                    "flags": 4,
+                    "type": "file_path",
+                    "ext": "pdf",
+                    "value": ""
+                },
+                {
+                    "name": "template_json",
+                    "desc": "PDFix layout template JSON file",
+                    "type": "file_path",
+                    "ext": "json",
+                    "value": ""
+                }
+            ],
+            "errors": {
+                "10": "Failed to parse arguments. Please check the usage and try again.",
+                "11": "PDFix layout template was not provided.",
+                "12": "Input and output file must be PDF documents.",
+                "20": "Some PDFix SDK error occurred."
+            },
+            "progress_regex": "^[^:]+:\\s+(?<progress>\\d{1,3})%"
+        }
+    ]
+}

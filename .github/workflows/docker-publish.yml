@@ -66,7 +66,8 @@ jobs:
 
       - name: Download SDKs
         id: download-sdks
-        run: chmod +x download/fill_sdk_folder.sh
+        run: |
+          chmod +x download/fill_sdk_folder.sh
           ./download/fill_sdk_folder.sh -a linux_aarch64 -f sdk-linux_aarch64 -g ${{ secrets.API_GITHUB_PAT_TOKEN }}
           ./download/fill_sdk_folder.sh -a linux_x86_64 -f sdk-linux_x86_64 -g ${{ secrets.API_GITHUB_PAT_TOKEN }}
 

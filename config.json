@@ -7,7 +7,7 @@
             "name": "pdfix_autotag_pdfix",
             "desc": "Automatically tags PDF using correct version of PDFix SDK [Local]",
             "version": "v0.0.0",
-            "icon": "autotag",
+            "icon": "autotag_pdfix",
             "category": "Accessibility",
             "local": true,
             "program": "docker run -v \"${working_directory}:/data\" -w /data --rm pdfix/autotag-pdfix:latest tag --name \"${license_name}\" --key \"${license_key}\" -i \"/data/${input_pdf}\" -o \"/data/${output_pdf}\" -t \"/data/${template_json}\"",

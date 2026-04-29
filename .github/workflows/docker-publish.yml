@@ -71,6 +71,11 @@ jobs:
           ./download/fill_sdk_folder.sh -a linux_aarch64 -f sdk-linux_aarch64 -g ${{ secrets.API_GITHUB_PAT_TOKEN }}
           ./download/fill_sdk_folder.sh -a linux_x86_64 -f sdk-linux_x86_64 -g ${{ secrets.API_GITHUB_PAT_TOKEN }}
 
+      - name: List downloaded SDKs
+        run: |
+          ls -la sdk-linux_aarch64
+          ls -la sdk-linux_x86_64
+
       - name: Run tests
         run: chmod +x test.sh && ./test.sh
 

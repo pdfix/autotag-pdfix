@@ -317,11 +317,11 @@ tags: dict[str, str] = create_dictionary_of_releases(releases, architecture)
 #     print(f"{tag}: {asset_url}")
 
 # Download SDKs
-# download_sdks(tags, sdk_path)
+download_sdks(tags, sdk_path)
 
 # Change latest version in constants.py
 versions: list[str] = list(tags.keys())
-# print(f"Versions: {versions}")
+print(f"Versions: {versions}")
 highest_version: str = max(versions, key=parse_version)
 print(f"Highest version: {highest_version}")
 with open(constants_path, "r") as file:

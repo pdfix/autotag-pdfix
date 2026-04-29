@@ -24,9 +24,7 @@ env.bak/
 venv.bak/
 
 # Downloaded SDKs
-sdk
-sdk-linux_aarch64
-sdk-linux_x86_64
+sdk*
 
 # Ignore files in
 data

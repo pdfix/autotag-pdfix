@@ -262,7 +262,7 @@ def delete_folder(folder: Path) -> None:
     folder.rmdir()
 
 
-def parse_version(version: str) -> tuple[int, int, int]:
+def parse_version(version: str) -> tuple:
     """
     Parses a version string "vX.Y.Z" into a tuple of integers (X, Y, Z).
 
@@ -317,11 +317,13 @@ tags: dict[str, str] = create_dictionary_of_releases(releases, architecture)
 #     print(f"{tag}: {asset_url}")
 
 # Download SDKs
-download_sdks(tags, sdk_path)
+# download_sdks(tags, sdk_path)
 
 # Change latest version in constants.py
 versions: list[str] = list(tags.keys())
+# print(f"Versions: {versions}")
 highest_version: str = max(versions, key=parse_version)
+print(f"Highest version: {highest_version}")
 with open(constants_path, "r") as file:
     lines: list[str] = file.readlines()
     for i, line in enumerate(lines):

@@ -10,6 +10,10 @@
             "icon": "autotag_pdfix",
             "category": "Accessibility",
             "local": true,
+            "docker": {
+                "name": "pdfix/autotag-pdfix",
+                "tag": "latest"
+            },
             "program": "docker run -v \"${working_directory}:/data\" -w /data --rm pdfix/autotag-pdfix:latest tag --name \"${license_name}\" --key \"${license_key}\" -i \"/data/${input_pdf}\" -o \"/data/${output_pdf}\" -t \"/data/${template_json}\"",
             "args": [
                 {

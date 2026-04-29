@@ -262,6 +262,19 @@ def delete_folder(folder: Path) -> None:
     folder.rmdir()
 
 
+def parse_version(version: str) -> tuple[int, int, int]:
+    """
+    Parses a version string "vX.Y.Z" into a tuple of integers (X, Y, Z).
+
+    Args:
+        version (str): The version string to parse.
+
+    Returns:
+        A tuple of integers representing the version.
+    """
+    return tuple(map(int, version.lstrip("v").split(".")))
+
+
 # Parse arguments
 parser: argparse.ArgumentParser = argparse.ArgumentParser(description="Download publihed PDFix SDKs into sdk folder.")
 parser.add_argument(
@@ -283,6 +296,7 @@ folder: str = args.folder
 project_path: Path = Path(__file__).parent.parent
 sdk_path: Path = project_path.joinpath(folder)
 sdk_path.mkdir(parents=True, exist_ok=True)
+constants_path: Path = project_path.joinpath("src", "constants.py")
 
 # Retrieve list of published SDKs
 api_url: str = "https://api.github.com/repos/pdfix/pdfix_sdk_builds/releases"
@@ -304,5 +318,17 @@ tags: dict[str, str] = create_dictionary_of_releases(releases, architecture)
 
 # Download SDKs
 download_sdks(tags, sdk_path)
+
+# Change latest version in constants.py
+versions: list[str] = list(tags.keys())
+highest_version: str = max(versions, key=parse_version)
+with open(constants_path, "r") as file:
+    lines: list[str] = file.readlines()
+    for i, line in enumerate(lines):
+        if line.startswith("LATEST_SDK_VERSION:"):
+            lines[i] = f'LATEST_SDK_VERSION: str = "{highest_version}"\n'
+            break
+with open(constants_path, "w") as file:
+    file.writelines(lines)
 
 print(f"Done. SDK trees under: {sdk_path}")
